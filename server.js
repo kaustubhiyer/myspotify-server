@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const SpotifyWebApi = require("spotify-web-api-node");
 const cors = require("cors");
@@ -13,9 +14,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post("/login", (req, res) => {
   const code = req.body.code;
   const spotifyApi = new SpotifyWebApi({
-    redirectUri: "http://localhost:3000",
-    clientId: "ea039643673c45e3961acfc5442caea1",
-    clientSecret: "01acfcbbfeed44bbbe2e855c9147969f",
+    redirectUri: process.env.REDIRECT_URI,
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
   });
   spotifyApi
     .authorizationCodeGrant(code)
@@ -35,9 +36,9 @@ app.post("/login", (req, res) => {
 app.post("/refresh", (req, res) => {
   const refreshToken = req.body.refreshToken;
   const spotifyApi = new SpotifyWebApi({
-    redirectUri: "http://localhost:3000",
-    clientId: "ea039643673c45e3961acfc5442caea1",
-    clientSecret: "01acfcbbfeed44bbbe2e855c9147969f",
+    redirectUri: process.env.REDIRECT_URI,
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
     refreshToken,
   });
   spotifyApi

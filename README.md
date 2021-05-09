@@ -1,0 +1,1 @@
+To get started, create an app at developers.spotify.com, set redirect url in the app to the react app's url, make an .env file with REDIRECT_URI, CLIENT_ID and CLIENT_SECRET, run npm i to install deps and run the server
